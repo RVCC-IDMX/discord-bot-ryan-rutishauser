@@ -1,0 +1,26 @@
+{
+  "name": "discord-bot-ryan-rutishauser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RVCC-IDMX/discord-bot-ryan-rutishauser.git"
+  },
+  "keywords": [],
+  "author": "Ryan Rutishauser <G00296398@stu.raritanval.edu> (https://github.com/RVCC-IDMX/cowsay-ryan-rutishauser)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RVCC-IDMX/discord-bot-ryan-rutishauser/issues"
+  },
+  "homepage": "https://github.com/RVCC-IDMX/discord-bot-ryan-rutishauser#readme",
+  "devDependencies": {
+    "@eslint/create-config": "^0.4.1",
+    "eslint": "^8.29.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}
