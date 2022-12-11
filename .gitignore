@@ -235,5 +235,6 @@ $RECYCLE.BIN/
 *.lnk
 # Remove config
 config.json
+.env
 
 # End of https://www.toptal.com/developers/gitignore/api/node,linux,macos,windows,visualstudiocode
