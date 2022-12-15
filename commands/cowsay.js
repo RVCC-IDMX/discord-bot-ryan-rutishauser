@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const cowsay = require('cowsay');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -6,11 +7,39 @@ module.exports = {
     .setDescription('Allows you to make a cow say something.')
     .addStringOption(option =>
       option.setName('input')
-        .setDescription('The input to echo back')
+        .setDescription('What the animal will say')
+        .setRequired(true)
+        .setMaxLength(1000))
+    .addStringOption(option =>
+      option.setName('animal')
+        .setDescription('What animal you want to use')
         .setRequired(true)),
   async execute(interaction) {
-    // interaction.user is the object representing the User who ran the command
-    // interaction.member is the GuildMember object, which represents the user in the specific guild
-    await interaction.reply(`This command was run by ${interaction.user.username}, who joined on ${interaction.member.joinedAt}.`);
-  },
+    try {
+      const selectedAnimal = interaction.options.getString('animal');
+      const theCowSays = cowsay.say({
+        text: `${interaction.options.getString('input')}`,
+        f: `${selectedAnimal}`,
+        e: "oO",
+        T: "U ",
+      });
+      if (theCowSays.length < 2000) {
+        await interaction.reply({
+          content: `\`\`\`${theCowSays.replaceAll("`", "'")}\`\`\``
+        });
+      }
+      else {
+        const theCowSayings = theCowSays.split(">");
+        await interaction.channel.send({
+          content: `\`\`\`${theCowSayings[0].replaceAll("`", "'")}\`\`\``
+        }),
+          await interaction.channel.send(`\`\`\`${theCowSayings[1].replaceAll("`", "'")}\`\`\``),
+          await interaction.reply({
+            content: `Successful`, ephemeral: true
+          });
+      }
+    } catch (err) {
+      await interaction.reply(`A cow with this name does not exist.`);
+    }
+  }
 };
